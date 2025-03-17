@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market</title>
+</head>
+<body>
+    
+    <form action="/" id="form" method="POST">
+        <select name="type" >
+        <option value="" data-display="Select">None</option>
+        <% if (locals.options) { %>
+            <% Object.keys(options).forEach((stk) => { %>
+                <option value="<%= options[stk] %>"><%= stk %></option>
+            <% }) %>
+        <% } %>
+    
+        </select>
+        <button type="submit" >Submit</button>
+
+    </form>
+    <h1>TO ADD A STOCK</h1>
+    <form action="/add" method="POST">
+        <input type="text" name="Name" placeholder="NAMe of stock" />
+        <input type="text" name="Shortform" placeholder="Symbol of stock" />
+
+        <input type="submit" value="OK" />
+    </form>
+    <%if (locals.message){ %>
+        <h1>INVALID STOCK PLEASE TRY AGAIN</h1>
+    <% } %>
+    <% if(locals.data){ %>
+        <h1>Price of  <%- stock %> is <%- data.c %></h1>
+     <% } %>   
+</body>
+</html>
